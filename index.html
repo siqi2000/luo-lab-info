@@ -4,161 +4,306 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>实验室规范 | Luo Group Info</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
+    :root, [data-theme="dark"] {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface-hover: #243044;
+      --accent: #3b82f6;
+      --accent-dim: #2563eb;
+      --text: #e7e9ea;
+      --text-muted: #8b98a5;
+      --success: #00ba7c;
+      --warning: #f7931a;
+      --border: #2f3336;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+    [data-theme="light"] {
+      --bg: #f5f5f5;
+      --surface: #ffffff;
+      --surface-hover: #eeeeee;
+      --accent: #1a73e8;
+      --accent-dim: #1557b0;
+      --text: #202124;
+      --text-muted: #5f6368;
+      --success: #1e8e3e;
+      --warning: #f9ab00;
+      --border: #dadce0;
+    }
+    [data-theme="light"] code {
+      background: rgba(26, 115, 232, 0.1);
+      color: #1967d2;
+    }
+    [data-theme="light"] blockquote {
+      background: rgba(26, 115, 232, 0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      line-height: 1.7;
-      max-width: 800px;
+      font-family: 'Noto Sans SC', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 720px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
-      color: #333;
-      background: #fafafa;
+      padding: 2.5rem 1.5rem;
+    }
+    header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
     }
     h1 {
       font-size: 1.75rem;
-      color: #1a1a1a;
-      border-bottom: 2px solid #0066cc;
-      padding-bottom: 0.5rem;
-      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
     }
     .subtitle {
-      color: #666;
+      color: var(--text-muted);
       font-size: 0.95rem;
-      margin-bottom: 2rem;
+      font-weight: 400;
     }
-    h2 {
-      font-size: 1.25rem;
-      color: #0066cc;
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
+    .nav-pills {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
     }
-    h3 {
-      font-size: 1.05rem;
-      color: #333;
+    .nav-pills a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .nav-pills a:hover {
+      background: var(--surface-hover);
+    }
+    .nav-pills a.primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .nav-pills a.primary:hover {
+      background: var(--accent-dim);
+    }
+    section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+    }
+    section h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    section h2::before {
+      content: '';
+      width: 4px;
+      height: 1.1em;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    section h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
       margin-top: 1.25rem;
       margin-bottom: 0.5rem;
     }
-    section {
-      background: #fff;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    }
     ul {
-      margin: 0.5rem 0;
-      padding-left: 1.5rem;
+      list-style: none;
+      padding: 0;
     }
-    li { margin-bottom: 0.4rem; }
+    li {
+      padding: 0.4rem 0;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
     a {
-      color: #0066cc;
+      color: var(--accent);
       text-decoration: none;
     }
     a:hover { text-decoration: underline; }
     code {
-      background: #f0f0f0;
-      padding: 0.15rem 0.4rem;
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      padding: 0.15rem 0.45rem;
       border-radius: 4px;
-      font-size: 0.9em;
+      font-size: 0.85em;
     }
     blockquote {
       margin: 0.75rem 0;
-      padding: 0.5rem 1rem;
-      border-left: 4px solid #ddd;
-      color: #666;
-      background: #f9f9f9;
+      padding: 1rem 1.25rem;
+      border-left: 4px solid var(--accent);
+      background: rgba(59, 130, 246, 0.08);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
     }
     .footer {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid #eee;
-      font-size: 0.9rem;
-      color: #888;
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
+    .theme-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .theme-btn:hover { background: var(--surface-hover); }
+    .theme-icon { display: none; }
+    [data-theme="dark"] .theme-icon.sun,
+    html:not([data-theme]) .theme-icon.sun { display: inline; }
+    [data-theme="light"] .theme-icon.moon { display: inline; }
   </style>
 </head>
 <body>
-  <h1>实验室规范</h1>
-  <p class="subtitle">本规范旨在保障实验室资源高效、有序使用，促进成员协作与沟通。</p>
+  <div class="container">
+    <header>
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1>实验室规范</h1>
+          <p class="subtitle">保障资源高效、有序使用，促进成员协作与沟通</p>
+        </div>
+        <button id="theme-toggle" class="theme-btn" title="切换日间/夜间模式" aria-label="切换主题">
+          <span class="theme-icon sun">☀</span>
+          <span class="theme-icon moon">☽</span>
+        </button>
+      </div>
+      <nav class="nav-pills">
+        <a href="#contact">联系方式</a>
+        <a href="#meeting">组会安排</a>
+        <a href="#server">服务器规范</a>
+        <a href="#api">大模型 API</a>
+        <a href="https://www.notion.so/your-gpu-database" target="_blank" class="primary">GPU 运行状态 →</a>
+      </nav>
+    </header>
 
-  <section>
-    <h2>一、联系方式</h2>
-    <ul>
-      <li><strong>实验室同学联系方式</strong>：<a href="https://www.notion.so/your-page" target="_blank">点击查看 Notion 通讯录</a><br>
-        <small>（请将上述链接替换为实际的 Notion 页面地址）</small></li>
-    </ul>
-  </section>
+    <section id="contact">
+      <h2>一、联系方式</h2>
+      <ul>
+        <li><strong>实验室同学联系方式</strong>：<a href="https://www.notion.so/your-page" target="_blank">点击查看 Notion 通讯录</a>。如需申请权限，请联系管理员官瑞阳（Gary）</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>二、组会安排</h2>
-    <ul>
-      <li><strong>时间</strong>：每周六上午、下午</li>
-      <li><strong>形式</strong>：组会具体安排请关注群通知或联系负责人</li>
-    </ul>
-  </section>
+    <section id="meeting">
+      <h2>二、组会安排</h2>
+      <ul>
+        <li><strong>时间</strong>：每周六上午、下午</li>
+        <li><strong>形式</strong>：组会具体安排请关注群通知</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>三、服务器使用规范</h2>
-    <h3>3.1 账号管理</h3>
-    <ul>
-      <li><strong>一人一号</strong>：每位成员使用独立账号，禁止共用账号。</li>
-      <li><strong>开号流程</strong>：需使用服务器时，联系 <strong>周拓</strong>（或指定负责同学）申请开通账户。</li>
-      <li><strong>责任归属</strong>：独立账号便于定位资源占用责任人，便于协调与问题追溯。</li>
-    </ul>
-    <h3>3.2 资源使用原则</h3>
-    <ul>
-      <li><strong>长时间占用</strong>：需长时间占用 CPU/GPU 运行大计算量任务时，请提前告知服务器管理员，获得许可后再执行。</li>
-      <li><strong>资源释放</strong>：任务结束后及时释放资源，避免长期闲置占用。</li>
-      <li><strong>禁止占满</strong>：禁止在任何情况下占满 CPU 资源，至少留出 4 个核心保证基础服务运行。</li>
-    </ul>
-    <h3>3.3 闲置资源处理</h3>
-    <ul>
-      <li><strong>长期占用且无活动</strong>：若发现进程长期占用显存/内存且无实际计算活动（如 GPU 利用率长期为 0%），可先通过 <code>ps aux | grep [PID]</code> 查询所属用户，联系对应用户协调关停。</li>
-      <li><strong>协调优先</strong>：以沟通协调为主，提高资源利用率，而非监督同学。</li>
-    </ul>
-    <h3>3.4 GPU 状态监控（可选）</h3>
-    <ul>
-      <li>部署轻量级监控脚本，仅调用 NVIDIA 官方工具读取 GPU 状态（显存、利用率、占用用户/进程）。</li>
-      <li>脚本不占用 GPU，CPU 和内存消耗可忽略，不影响服务器正常使用。</li>
-      <li>将采集到的 GPU 状态（谁在用、用了多少、是否闲置）同步至服务器使用专用群，便于发现闲置进程并协调关停。</li>
-    </ul>
-  </section>
+    <section id="server">
+      <h2>三、服务器使用规范</h2>
+      <h3>3.1 账号管理</h3>
+      <ul>
+        <li><strong>一人一号</strong>：每位成员使用独立账号，禁止共用账号</li>
+        <li><strong>开号流程</strong>：联系 <strong>周拓</strong>（或指定负责同学）申请开通账户</li>
+        <li><strong>责任归属</strong>：独立账号便于定位资源占用责任人</li>
+      </ul>
+      <h3>3.2 资源使用原则</h3>
+      <ul>
+        <li><strong>长时间占用</strong>：需长时间占用 CPU/GPU 时，请提前告知服务器管理员</li>
+        <li><strong>资源释放</strong>：任务结束后及时释放资源</li>
+        <li><strong>禁止独占</strong>：禁止占满 CPU 资源，至少留出 4 个核心以保证基础服务正常运行</li>
+      </ul>
+      <h3>3.3 闲置资源处理</h3>
+      <ul>
+        <li>若发现进程长期占用显存/内存且无计算活动（GPU 利用率长期 0%），可通过 <code>ps aux | grep [PID]</code> 查询所属用户，联系协调关停</li>
+        <li><strong>友好协调</strong>：以沟通协调为主，旨在提高资源利用率，而非监督同学</li>
+      </ul>
+      <h3>3.4 GPU 状态监控</h3>
+      <ul>
+        <li>部署轻量级监控脚本，仅调用 NVIDIA 官方工具读取 GPU 状态，不占用 GPU，CPU/内存消耗可忽略</li>
+        <li>采集内容：谁在用、用了多少、是否闲置（不采集任何隐私信息）</li>
+        <li>数据自动同步至 Notion 数据库，仅被邀请的实验室成员可查看，详见 <a href="https://www.notion.so/your-gpu-database" target="_blank">GPU 运行状态</a>（请将链接替换为实际 Notion 页面地址）</li>
+        <li>发现长期闲置进程时，在群里友好询问、协调关停，核心是提高资源利用率</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>四、大模型 API 资源使用规范</h2>
-    <h3>4.1 部署原则</h3>
-    <ul>
-      <li><strong>按需部署</strong>：部署 VLLM 等推理服务前，请确认确有持续使用需求。</li>
-      <li><strong>及时关停</strong>：服务长期无请求时，请主动关停以释放显存，供他人使用。</li>
-    </ul>
-    <h3>4.2 资源占用说明</h3>
-    <ul>
-      <li>VLLM 等推理服务启动后，模型常驻显存，即使无推理请求也会持续占用。</li>
-      <li>建议定期自查：<code>nvidia-smi</code> 查看显存占用，<code>ps aux | grep vllm</code> 查看自身服务状态。</li>
-    </ul>
-    <h3>4.3 协调机制</h3>
-    <ul>
-      <li>若发现显存被长期占用且利用率极低，可通过监控群或直接联系对应用户，友好沟通关停事宜。</li>
-    </ul>
-  </section>
+    <section id="api">
+      <h2>四、大模型 API 资源使用规范</h2>
+      <h3>4.1 部署原则</h3>
+      <ul>
+        <li><strong>按需部署</strong>：部署 VLLM 等推理服务前，请确认确有持续使用需求</li>
+        <li><strong>及时关停</strong>：服务长期无请求时，请主动关停以释放显存</li>
+      </ul>
+      <h3>4.2 资源占用说明</h3>
+      <ul>
+        <li>VLLM 启动后模型常驻显存，即使无推理请求也会持续占用</li>
+        <li>建议定期自查：使用 <code>nvidia-smi</code> 查看显存占用，<code>ps aux | grep vllm</code> 查看自身服务状态</li>
+      </ul>
+      <h3>4.3 协调机制</h3>
+      <ul>
+        <li>显存长期占用且利用率极低时，可通过监控群或直接联系对应用户，友好沟通关停事宜</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>五、其他规范</h2>
-    <blockquote>
-      预留空间，可后续补充，例如：<br>
-      实验室安全与值日 · 设备使用与预约 · 数据与文件管理 · 财务与报销流程 · 其他……
-    </blockquote>
-  </section>
+    <section>
+      <h2>五、其他规范</h2>
+      <blockquote>
+        预留空间，可后续补充：实验室安全与值日 · 设备使用与预约 · 数据与文件管理 · 财务与报销流程 · 其他……
+      </blockquote>
+    </section>
 
-  <section>
-    <h2>六、附则</h2>
-    <ul>
-      <li>本规范自公布之日起试行，可根据实际情况修订。</li>
-      <li>如有疑问，请联系实验室负责人或服务器管理员。</li>
-    </ul>
-  </section>
+    <section>
+      <h2>六、附则</h2>
+      <ul>
+        <li>本规范自公布之日起试行，将根据实际运行情况适时修订</li>
+        <li>如有疑问，请联系实验室负责人或服务器管理员</li>
+      </ul>
+    </section>
 
-  <p class="footer">Luo Group Info · 实验室规范</p>
+    <p class="footer">Luo Group Info · 实验室规范</p>
+  </div>
+  <script>
+    (function() {
+      const key = 'luo-lab-theme';
+      const saved = localStorage.getItem(key);
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+      document.getElementById('theme-toggle').onclick = function() {
+        const t = document.documentElement.getAttribute('data-theme');
+        const next = t === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem(key, next);
+      };
+    })();
+  </script>
 </body>
 </html>
